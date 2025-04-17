@@ -1,15 +1,20 @@
 {
   "configurations": [
     {
-      "name": "windows-gcc-x64",
+      "name": "WSL-Debian",
       "includePath": [
-        "${workspaceFolder}/**"
+        "/usr/include/c++/12",
+        "/usr/include/x86_64-linux-gnu/c++/12",
+        "/usr/lib/gcc/x86_64-linux-gnu/12/include",
+        "/usr/local/include",
+        "/usr/include/x86_64-linux-gnu",
+        "/usr/include"
       ],
       "defines": [],
-      "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
-      "cStandard": "${default}",
-      "cppStandard": "${default}",
-      "intelliSenseMode": "windows-gcc-x64"
+      "compilerPath": "/usr/bin/g++",
+      "cStandard": "c17",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "linux-gcc-x64"
     },
     {
       "name": "Windows",
