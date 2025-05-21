@@ -4,21 +4,20 @@
 #include <time.h>
 
 #define MAX_SIZE 10
-#define MAX_ITER 100
+#define MAX_ITER 1000
 
 // Metodo de Jordan para matriz inversa
 void metodoJordan()
 {
-    int n, i, j, k, l;
+    int n, i, j, k;
     double m[MAX_SIZE][MAX_SIZE], id[MAX_SIZE][MAX_SIZE];
-    double pivo, temp, mult;
+    double temp, mult;
     clock_t inicio, fim;
     double tempo;
 
-    printf("\nMetodo Jordan\n");
-    printf("\n");
+    printf("\nMetodo Jordan para Inversao\n\n");
 
-    // Entrada
+    // Entrada da ordem da matriz
     printf("Ordem da matriz (max %d): ", MAX_SIZE);
     scanf("%d", &n);
     if (n <= 0 || n > MAX_SIZE)
@@ -27,15 +26,14 @@ void metodoJordan()
         return;
     }
 
+    // Leitura da matriz
     printf("Digite a matriz:\n");
     for (i = 0; i < n; i++)
-    {
         for (j = 0; j < n; j++)
         {
             printf("m[%d][%d]: ", i + 1, j + 1);
             scanf("%lf", &m[i][j]);
         }
-    }
 
     // Inicializa matriz identidade
     for (i = 0; i < n; i++)
@@ -44,16 +42,16 @@ void metodoJordan()
 
     inicio = clock();
 
-    // Eliminacao de Gauss-Jordan com pivoteamento
+    // Passo 1: Eliminação fora da diagonal (Zerar)
     for (i = 0; i < n; i++)
     {
-        // Busca do maior pivo
+        // Pivoteamento parcial
         int pivo_linha = i;
         for (k = i + 1; k < n; k++)
             if (fabs(m[k][i]) > fabs(m[pivo_linha][i]))
                 pivo_linha = k;
 
-        // Troca de linhas se necessario
+        // Troca de linhas se necessário
         if (pivo_linha != i)
         {
             printf("\nTroca: L%d <-> L%d\n", i + 1, pivo_linha + 1);
@@ -69,24 +67,30 @@ void metodoJordan()
             }
         }
 
-        // Verifica se a matriz é singular
+        // Verifica se o pivô é zero
         if (fabs(m[i][i]) < 1e-10)
         {
-            printf("Matriz singular! Nao possui inversa.\n");
+            printf("Matriz singular. Nao possui inversa.\n");
             return;
         }
 
-        // Normaliza a linha do pivo
-        pivo = m[i][i];
-        printf("\nNormaliza L%d / %.2f\n", i + 1, pivo);
-        for (j = 0; j < n; j++)
+        // Zera todos os elementos da coluna i (menos o pivô)
+        for (k = 0; k < n; k++)
         {
-            m[i][j] /= pivo;
-            id[i][j] /= pivo;
+            if (k != i)
+            {
+                mult = m[k][i] / m[i][i];
+                printf("\nL%d = L%d - (%.2f * L%d)\n", k + 1, k + 1, mult, i + 1);
+                for (j = 0; j < n; j++)
+                {
+                    m[k][j] -= mult * m[i][j];
+                    id[k][j] -= mult * id[i][j];
+                }
+            }
         }
 
-        // Mostra matriz atual
-        printf("Matriz atual:\n");
+        // Imprime após zerar a coluna i
+        printf("\nMatriz m apos zerar coluna %d:\n", i + 1);
         for (k = 0; k < n; k++)
         {
             for (j = 0; j < n; j++)
@@ -94,31 +98,25 @@ void metodoJordan()
             printf("\n");
         }
 
-        // Zera os elementos da coluna
+        printf("\nMatriz id apos zerar coluna %d:\n", i + 1);
         for (k = 0; k < n; k++)
         {
-            if (k != i)
-            {
-                mult = m[k][i];
-                if (mult != 0)
-                {
-                    printf("\nL%d = L%d - (%.2f * L%d)\n", k + 1, k + 1, mult, i + 1);
-                    for (j = 0; j < n; j++)
-                    {
-                        m[k][j] -= mult * m[i][j];
-                        id[k][j] -= mult * id[i][j];
-                    }
-                }
-            }
-        }
-
-        // Mostra resultado do passo
-        printf("Matriz apos passo %d:\n", i + 1);
-        for (l = 0; l < n; l++)
-        {
             for (j = 0; j < n; j++)
-                printf("%.2f\t", m[l][j]);
+                printf("%.2f\t", id[k][j]);
             printf("\n");
+        }
+    }
+
+    // Passo 2: Normalização da diagonal
+    printf("\nNormalizando as linhas...\n");
+    for (i = 0; i < n; i++)
+    {
+        double pivo = m[i][i];
+        printf("L%d = L%d / %.2f\n", i + 1, i + 1, pivo);
+        for (j = 0; j < n; j++)
+        {
+            m[i][j] /= pivo;
+            id[i][j] /= pivo;
         }
     }
 
@@ -126,8 +124,7 @@ void metodoJordan()
     tempo = (double)(fim - inicio) / CLOCKS_PER_SEC;
 
     // Resultado
-    printf("\nResultado\n");
-    printf("\n");
+    printf("\nResultado\n\n");
     printf("Matriz original transformada em identidade:\n");
     for (i = 0; i < n; i++)
     {
@@ -153,16 +150,16 @@ void metodoJacobi()
     int n, i, j, k, iter = 0;
     double A[MAX_SIZE][MAX_SIZE], b[MAX_SIZE];
     double x[MAX_SIZE], x_ant[MAX_SIZE];
-    double erro, max_erro, precisao;
+    double max_erro, precisao;
     double soma, temp;
     clock_t inicio, fim;
     double tempo;
 
-    printf("\nJacobi\n");
+    printf("\nSolucao de Sistema com Jacobi\n");
     printf("\n");
 
     // Entrada
-    printf("Numero de incognitas (max %d): ", MAX_SIZE);
+    printf("Qual o numero de incognitas? (max %d): ", MAX_SIZE);
     scanf("%d", &n);
     if (n <= 0 || n > MAX_SIZE)
     {
@@ -258,7 +255,7 @@ void metodoJacobi()
     printf("\nIteracoes:\n");
     do
     {
-        // Calcula nova aproximacao
+        // Calcula nova aproximação
         for (i = 0; i < n; i++)
         {
             soma = 0;
@@ -270,17 +267,26 @@ void metodoJacobi()
             x[i] = (b[i] - soma) / A[i][i];
         }
 
-        // Calcula erro
-        max_erro = 0;
+        // Cálculo do erro
+        double d = 0.0, max_x = 0.0;
         for (i = 0; i < n; i++)
         {
-            erro = fabs(x[i] - x_ant[i]);
-            if (fabs(x[i]) > 1e-10)
-                erro /= fabs(x[i]); // Erro relativo
-            if (erro > max_erro)
-                max_erro = erro;
-            x_ant[i] = x[i]; // Atualiza para próxima iteração
+            double dif = fabs(x[i] - x_ant[i]);
+            if (dif > d)
+                d = dif;
+
+            if (fabs(x[i]) > max_x)
+                max_x = fabs(x[i]);
+
+            // Atualiza x_ant para próxima iteração
+            x_ant[i] = x[i];
         }
+
+        // Erro relativo máximo
+        if (max_x > 1e-10)
+            max_erro = d / max_x;
+        else
+            max_erro = d;
 
         iter++;
 
