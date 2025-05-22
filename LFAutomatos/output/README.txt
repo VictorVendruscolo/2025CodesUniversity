@@ -3,7 +3,7 @@ AUTÔMATO FINITO DETERMINiSTICO (AFD)
 Este programa implementa um AFD interativo em C.
 
 ---------------------------
-COMPILAcaO (emUnix/Linux):
+COMPILACAO (Unix/Linux):
 ---------------------------
 
 $ gcc -o afd programa.c
@@ -19,7 +19,7 @@ ENTRADAS DO USUÁRIO:
 3. Estado inicial (ex: 0)
 4. Estados finais (ex: 2)
 5. Transicões delta (ex: delta(0, a) = 1)
-6. Palavra a testar (simbolos separados por espaco: a b b a)
+6. Palavra a testar (simbolos sem espaço espaco: abba)
 
 ---------------------------
 OBSERVAcÕES:

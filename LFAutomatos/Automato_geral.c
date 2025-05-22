@@ -50,7 +50,7 @@ int pertence(char *el, char M[MAX][MAXLEN], int tam)
 
 int main()
 {
-    // Geracao do EADME antes de iniciar
+    // Geracao do README antes de iniciar
     FILE *readme = fopen("README.txt", "w");
     if (readme != NULL)
     {
@@ -58,7 +58,7 @@ int main()
                 "AUTÔMATO FINITO DETERMINiSTICO (AFD)\n\n"
                 "Este programa implementa um AFD interativo em C.\n\n"
                 "---------------------------\n"
-                "COMPILAcaO (emUnix/Linux):\n"
+                "COMPILACAO (Unix/Linux):\n"
                 "---------------------------\n\n"
                 "$ gcc -o afd programa.c\n\n"
                 "EXECUcaO:\n"
@@ -71,7 +71,7 @@ int main()
                 "3. Estado inicial (ex: 0)\n"
                 "4. Estados finais (ex: 2)\n"
                 "5. Transicões delta (ex: delta(0, a) = 1)\n"
-                "6. Palavra a testar (simbolos separados por espaco: a b b a)\n\n"
+                "6. Palavra a testar (simbolos sem espaço espaco: abba)\n\n"
                 "---------------------------\n"
                 "OBSERVAcÕES:\n"
                 "---------------------------\n"
@@ -90,7 +90,7 @@ int main()
     }
 
     char A[MAX][MAXLEN], Q[MAX][MAXLEN], F[MAX][MAXLEN], delta[MAX][MAX][MAXLEN];
-    char str[300], W[300], qAtual[MAXLEN], simbolo[MAXLEN];
+    char str[300], W[300], qAtual[MAXLEN];
     int tamA, tamQ, tamF, tamW;
     char opcao;
 
@@ -159,22 +159,19 @@ int main()
         {
             printf("\n& Aplicacao de Palavra &\n");
             printf("\n");
-            printf("Digite a palavra (simbolos separados por espaco): ");
+            printf("Digite a palavra (ex: abba): ");
             getsCustom(W, sizeof(W), &tamW);
 
             // Checar se todos simbolos pertencem ao alfabeto
-            char tmp[300];
-            strcpy(tmp, W);
             int invalido = 0;
-            char *tk = strtok(tmp, " ");
-            while (tk != NULL)
+            for (int k = 0; k < tamW; k++)
             {
-                if (!pertence(tk, A, tamA))
+                char simbolo_str[2] = {W[k], '\0'};
+                if (!pertence(simbolo_str, A, tamA))
                 {
-                    printf("Erro: simbolo \"%s\" nao pertence ao alfabeto.\n", tk);
+                    printf("Erro: simbolo \"%c\" nao pertence ao alfabeto.\n", W[k]);
                     invalido = 1;
                 }
-                tk = strtok(NULL, " ");
             }
             if (invalido)
                 continue;
@@ -184,12 +181,11 @@ int main()
             int travou = 0;
 
             printf("Sequencia: %s", qAtual);
-            char *token = strtok(W, " ");
-            while (token != NULL)
+            for (int k = 0; k < tamW; k++)
             {
-                strcpy(simbolo, token);
+                char simbolo_str[2] = {W[k], '\0'};
                 int i = buscaIndice(qAtual, Q, tamQ);
-                int j = buscaIndice(simbolo, A, tamA);
+                int j = buscaIndice(simbolo_str, A, tamA);
                 if (i == -1 || j == -1 || strcmp(delta[i][j], TRAVOU) == 0)
                 {
                     travou = 1;
@@ -197,13 +193,12 @@ int main()
                 }
                 strcpy(qAtual, delta[i][j]);
                 printf(" -> %s", qAtual);
-                token = strtok(NULL, " ");
             }
 
             if (!travou && pertence(qAtual, F, tamF))
                 printf("\nPalavra reconhecida!\n");
             else
-                printf("\nPalavra NAO recnhecida!\n");
+                printf("\nPalavra NAO reconhecida!\n");
 
             printf("Deseja testar outra palavra? (s/n): ");
             scanf(" %c", &opcao);
