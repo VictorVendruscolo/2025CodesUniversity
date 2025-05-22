@@ -211,6 +211,6 @@ int main()
 
     } while (opcao == 's' || opcao == 'S');
 
-    printf("Fim Feliz/Happy End/Finalizacion alegre\n");
+    printf("\nFim Feliz/Happy End/Finalizacion alegre\n");
     return 0;
 }
