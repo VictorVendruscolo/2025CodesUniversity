@@ -172,6 +172,29 @@ void imprimirListaCircular(No *inicio)
     printf(" -> [volta ao inicio]\n");
 }
 
+int buscarListaCircular(No *inicio, int valor)
+{
+    if (inicio == NULL)
+    {
+        return -1; // Lista vazia
+    }
+
+    No *atual = inicio;
+    int posicao = 0;
+
+    do
+    {
+        if (atual->dado == valor)
+        {
+            return posicao;
+        }
+        atual = atual->ptprox;
+        posicao++;
+    } while (atual != inicio);
+
+    return -1; // Não encontrado
+}
+
 // Função para inserir ordenadamente na lista circular
 No *inserirListaCircular(No *inicio, int valor)
 {
@@ -194,7 +217,7 @@ No *inserirListaCircular(No *inicio, int valor)
     // Um só elemento ou inserir antes do primeiro
     if (inicio->ptprox == inicio || valor <= inicio->dado)
     {
-        // Encontrar último nó
+        // Encontrar último No
         No *ultimo = inicio;
         while (ultimo->ptprox != inicio)
         {
@@ -243,7 +266,7 @@ No *removerListaCircular(No *inicio, int valor)
     // Remover do início
     if (inicio->dado == valor)
     {
-        // Encontrar último nó
+        // Encontrar último No
         No *ultimo = inicio;
         while (ultimo->ptprox != inicio)
         {
@@ -279,9 +302,9 @@ No *removerListaCircular(No *inicio, int valor)
     return inicio;
 }
 
-// ==================== LISTA DUPLAMENTE ENCADEADA COM NÓ CABEÇA ====================
+// ==================== LISTA DUPLAMENTE ENCADEADA COM No CABEcA ====================
 
-// Função para inicializar lista duplamente encadeada com nó cabeça
+// Função para inicializar lista duplamente encadeada com No cabeca
 NoDuplo *inicializarListaDupla()
 {
     NoDuplo *cabeca = (NoDuplo *)malloc(sizeof(NoDuplo));
@@ -291,7 +314,7 @@ NoDuplo *inicializarListaDupla()
         return NULL;
     }
 
-    cabeca->dado = 0; // Nó cabeça nao armazena dado útil
+    cabeca->dado = 0; // No cabeca nao armazena dado útil
     cabeca->ptprox = cabeca;
     cabeca->ptant = cabeca;
 
@@ -336,7 +359,7 @@ void inserirListaDupla(NoDuplo *cabeca, int valor)
 
     novo->dado = valor;
 
-    // Inserir antes do nó cabeça (no final da lista)
+    // Inserir antes do No cabeca (no final da lista)
     novo->ptprox = cabeca;
     novo->ptant = cabeca->ptant;
     cabeca->ptant->ptprox = novo;
@@ -637,14 +660,14 @@ void menuListaCircular()
         case 3:
             printf("Digite o valor a buscar: ");
             scanf("%d", &valor);
-            pos = buscarListaSimples(lista, valor); // Reutiliza a função
+            pos = buscarListaCircular(lista, valor); // CORREÇÃO: usar buscarListaCircular
             if (pos != -1)
             {
-                printf("Elemento %d encontrado na posicao %d.\n", valor, pos);
+                printf("Elemento %d encontrado na posição %d.\n", valor, pos);
             }
             else
             {
-                printf("Elemento %d nao encontrado.\n", valor);
+                printf("Elemento %d não encontrado.\n", valor);
             }
             imprimirListaCircular(lista);
             break;
@@ -679,7 +702,7 @@ void menuListaDupla()
 
     do
     {
-        printf("\n=== Lista Duplamente Encadeada com Nó Cabeça ===\n");
+        printf("\n=== Lista Duplamente Encadeada com No Cabeca ===\n");
         printf("1 - Inserir elemento\n");
         printf("2 - Remover elemento\n");
         printf("3 - Buscar elemento\n");
@@ -856,7 +879,7 @@ int main()
         printf("\n## Manipulacao de Listas, Pilhas e Filas ##\n\n");
         printf("1 - Lista Simplesmente Encadeada Ordenada\n");
         printf("2 - Lista Circular Simplesmente Encadeada Ordenada\n");
-        printf("3 - Lista Duplamente Encadeada com Nó Cabeça\n");
+        printf("3 - Lista Duplamente Encadeada com No Cabeca\n");
         printf("4 - Fila (FIFO)\n");
         printf("5 - Pilha (LIFO)\n");
         printf("6 - Sair\n");
