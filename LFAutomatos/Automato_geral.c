@@ -71,7 +71,7 @@ int main()
                 "3. Estado inicial (ex: 0)\n"
                 "4. Estados finais (ex: 2)\n"
                 "5. Transicões delta (ex: delta(0, a) = 1)\n"
-                "6. Palavra a testar (simbolos sem espaço espaco: abba)\n\n"
+                "6. Palavra a testar (simbolos sem espaço: abba)\n\n"
                 "---------------------------\n"
                 "OBSERVAcÕES:\n"
                 "---------------------------\n"
