@@ -663,11 +663,11 @@ void menuListaCircular()
             pos = buscarListaCircular(lista, valor); // CORREÇÃO: usar buscarListaCircular
             if (pos != -1)
             {
-                printf("Elemento %d encontrado na posição %d.\n", valor, pos);
+                printf("Elemento %d encontrado na posicao %d.\n", valor, pos);
             }
             else
             {
-                printf("Elemento %d não encontrado.\n", valor);
+                printf("Elemento %d nao encontrado.\n", valor);
             }
             imprimirListaCircular(lista);
             break;
