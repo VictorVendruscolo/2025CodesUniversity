@@ -3,9 +3,6 @@
  * Inserção, remoção, busca, menor/maior, predecessor/sucessor
  * Impressão em pré-ordem, in-ordem e pós-ordem
  * Leitura/Gravação em arquivo binário usando struct s_arq_no
- *
- * Compilar com:
- * gcc -Wall -Wextra -pedantic -o arvore arvore.c
  */
 
 #include <stdio.h>
