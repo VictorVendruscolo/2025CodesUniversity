@@ -75,49 +75,36 @@ public:
 
 // ! Código tarefa sala
 
-// Classe Deck herdando publicamente de DStack
+// Classe Deck herdando de forma protegida de DStack
 template <class T>
-class VDeck : public DStack<T> { // adicionado: herança pública
-public: // adicionado: início da seção pública
+class VDeck : protected DStack<T> {
+public:
+    VDeck(unsigned capacity = 2) : DStack<T>(capacity) {}
 
-    // Construtor usando o construtor da base
-    VDeck(unsigned capacity = 2) : DStack<T>(capacity) {} // adicionado
-
-    // pushback: igual ao push da pilha (insere no topo)
-    void pushback(T elem) { // adicionado
-        this->push(elem); // adicionado
+    void pushback(T elem) {
+        this->push(elem);
     }
 
-    // popback: igual ao pop da pilha (remove do topo)
-    bool popback() { // adicionado
-        return this->pop(); // adicionado
+    bool popback() {
+        return this->pop();
     }
 
-    // pushfront: insere no início (base) do deck
-    void pushfront(T elem) { // adicionado
-        // Insere no topo normalmente
-        this->push(elem); // adicionado
-        // Agora faz swaps até o elemento chegar na base (posição 0)
-        for(unsigned i = this->size() - 1; i > 0; --i) { // adicionado
-            std::swap(this->at(i), this->at(i-1)); // adicionado
+    void pushfront(T elem) {
+        this->push(elem);
+        for(unsigned i = this->size() - 1; i > 0; --i) {
+            std::swap(this->at(i), this->at(i-1));
         }
     }
 
-    // popfront: remove do início (base) do deck
-    bool popfront() { // adicionado
-        if(this->size() == 0) // adicionado
-            return false; // adicionado
-        // Salva o elemento da base (opcional, se quiser retornar)
-        // Move todos os elementos uma posição para trás
-        for(unsigned i = 0; i < this->size() - 1; ++i) { // adicionado
-            this->at(i) = this->at(i+1); // adicionado
+    bool popfront() {
+        if(this->size() == 0)
+            return false;
+        for(unsigned i = 0; i < this->size() - 1; ++i) {
+            this->at(i) = this->at(i+1);
         }
-        // Remove o topo (último elemento)
-        return this->pop(); // adicionado
+        return this->pop();
     }
-}; // adicionado
-
-
+};
 
 int main()
 {
@@ -134,57 +121,6 @@ int main()
         myStack.pop();
     }
     cout<<endl << endl;
-
-    // Teste do deck
-    VDeck<int> myDeck;
-
-    cout << "Teste VDeck (deck):" << endl;
-
-    // Teste pushback
-    cout << "pushback 1, 2, 3:" << endl;
-    myDeck.pushback(1);
-    myDeck.pushback(2);
-    myDeck.pushback(3);
-    for(unsigned j=0; j<myDeck.size(); ++j)
-        cout << myDeck.at(j) << ' ';
-    cout << endl;
-
-    // Teste pushfront
-    cout << "pushfront 10:" << endl;
-    myDeck.pushfront(10);
-    for(unsigned j=0; j<myDeck.size(); ++j)
-        cout << myDeck.at(j) << ' ';
-    cout << endl;
-
-    // Teste popback
-    cout << "popback:" << endl;
-    myDeck.popback();
-    for(unsigned j=0; j<myDeck.size(); ++j)
-        cout << myDeck.at(j) << ' ';
-    cout << endl;
-
-    // Teste popfront
-    cout << "popfront:" << endl;
-    myDeck.popfront();
-    for(unsigned j=0; j<myDeck.size(); ++j)
-        cout << myDeck.at(j) << ' ';
-    cout << endl;
-
-    // Teste múltiplas operações
-    cout << "pushfront 20, pushback 30:" << endl;
-    myDeck.pushfront(20);
-    myDeck.pushback(30);
-    for(unsigned j=0; j<myDeck.size(); ++j)
-        cout << myDeck.at(j) << ' ';
-    cout << endl;
-
-    // Teste esvaziar o deck
-    cout << "Esvaziando o deck com popfront:" << endl;
-    while(myDeck.size() > 0) {
-        cout << myDeck.at(0) << ' ';
-        myDeck.popfront();
-    }
-    cout << endl;
 
     return 0;
 }
