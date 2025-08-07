@@ -1,0 +1,39 @@
+Trabalho: 
+    Gerar aquivos de teste
+    Ler arquivos
+    Interface gráfica
+
+Herança:
+    Pode ter várias classes derivadas
+    Classe derivada: tem todas as coisas da CLasse Base
+    Dado privado na classe base existe na Derivada mas não acessa por ela
+    Tipo Privado: libera acesso às classes derivadas
+    Herança Múltipla: Herda de 2 bases
+    Classes abstratas...
+    Diamant Problem
+    
+Acesso a dados de acordo com o tipo:
+
+            Classe      Derivada        Objeto
+Public      Sim         Sim             Sim
+Protected   Sim         Sim             Não
+Private     Sim         Não             Não
+
+Sintaxe
+    class Derivada1: <tipo de acesso> Base, <tipo de acesso> Base2 {};
+
+tipo de acesso à classe: delimita o acesso a partir da classe derivada
+    o tipo de acesso à classe base pela derivada1 vai se extender às derivadas da Derivada1
+
+O nível de acesso aos dados só restringe
+    caso seja publico e o tipo é privado, o que é publico e protegido passa a ser privado para 
+    todas as outras Derivadas da Derivada com tipo de acesso privado
+
+Cplusplus reference CLibrary
+    <vector> vs <array>
+    estudar bibliotecas
+    preferencia: usar at ao invés de operator[] por questões de segurança (vector)
+
+vector<int>::push_back(n);
+    chamar função da classe base na classe derivada
+    

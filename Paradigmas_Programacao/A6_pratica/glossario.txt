@@ -1,0 +1,57 @@
+Locação estática
+
+Segurança de acesso à informações da classe (quando usar)
+    /* const int* getV() 
+            return V        // !  Retorna o vetor (vai depender do que você quer que acessem)
+    */
+
+Não entregar o ponteiro do seu cofre kkkk!!!
+    
+
+string -> biblioteca/classe
+    #include<string>
+    #include<stdlib.h>
+     string s1,s2("alguma coisa "), s3("outra coisa ");
+     s1 = s3+' '+s2;
+    
+printf(s1.c_str());
+    compatibilidade com bibliotecas de C
+    printf retorna o ponteiro
+
+Estudo À parte:
+    Lançamento de exceção/exceptions in C++
+    trhow
+    std::exception
+    int getElementAt(unsigned i){
+            if(i<MAX){  
+                throw 'b';  //? exceções (Estudar)
+                         
+            }
+            else{
+                returnV[1];
+            }
+    }
+
+    main:
+
+    try{
+        cout<<da.getElementAt(10)<<endl;
+    }
+    catch(char c){
+        cout<<endl<<c<<endl;
+    }
+    catch(...){
+            cout<<'...'<<endl;
+    }
+    
+new vs malloc
+    classe: sempre "new" porque o malloc não chama o contrutor
+        delete: chama o destrutor, free não chama
+
+reserve()
+memcpy() vs for
+
+
+
+
+

@@ -1,0 +1,159 @@
+codigo da aula: 
+    codigo 1
+         int i=10;
+        int *p1 = &i;
+        int *p2 = &i;
+
+        *p2 = 5;
+        cout << *p1
+
+    codigo 2
+        int *p1 = new int;
+        *p1 = 10;
+        int *p2 = p1 // ! &p1 vai apontar pro ponteiro e nao pro resultado
+        &p2 = 5;
+        cout << *p1;
+        delete p1;
+        p2 = p1 = nullptr; // ? NULL não existe, teria que usar define
+        // ! não pode esquecer de desalocar o p2 junto
+        *p2 = 6; // ! erro proposital, vai dar merda
+
+
+    codigo 3
+        Class Triangulo {
+            float b, a;
+            public:
+                float area(){
+                    (return a*b)/2.0 //&& this -> a * this -> b && (*this).a * (*this).b
+                }
+        }
+        Triangulo t1, t2;
+        t1.area();
+
+
+    codigo 4
+            Struct Triangulo {
+                float a, b;
+
+            }
+        float area (Triangulo t) {
+            return(tb*ta)/2.0
+
+        }
+
+        Triangulo t1, t2, *p;
+        area(t1);
+
+    codigo 5
+        class VTriangle{  // pra acessar os ponteiros base e height uso o operador "."
+            ...
+            public:
+            ...
+                float getBase(){
+                    return base;
+                }
+                float getHeight(){
+                    return height;
+                }
+                void setBase(float base){
+                    this -> base = base; //pra nao confundir os argumentos usamos o this
+                }
+                void setBase(float height){
+                    this ->height = height; //this dereferencia o ponteiro para o dado membro do objeto
+                }
+        }; //atenção nesse ponto e virgula que precisa
+
+
+
+
+Erro excessão do ponteiro nao desalocado com uma new ...
+    programa bugado
+        pode ou não dar Erro
+            nao vai dar erro se o ponteiro invadir uma area que pertence ao programa
+
+Alocar e Desalocar ponteiros:
+    quem aloca, desaloca.
+    *p = NULL
+
+new int
+    area de dados int
+    "new" substitui o malloc, malloc nao da pra usar no objeto ( variavel de uma classe)
+    new  & delete - malloc & free
+    new int[n] - array de inteiros do tamanho n 
+
+
+templates de ponteiros inteligentes 
+    ponteiros que apontam para o mesmo dado
+        auto_ptr; (tipo de variável) //c++ 98, ou seja, obsoleto
+        unique_ptr ( ponteiro unico ) - nunca vai ter 2 ponteiros apontando para o mesmo lugar pq
+         se atribuir outro ponteiro para o mesmo dado ele cria uma copia da area
+
+        share_ptr (ponteiro compartilhado) - copia so o endereço, nao cria uma copia da area,
+         compartilha a mesma area. desaloca a area sozinho quando aponta os ponteiros para null_ptr.
+          nao precisa usar delete
+
+
+c++ basico -  baixo nivel
+c++ templates - alto nivel
+
+menu de conteiners - cplusplus
+
+os simbulos são operadores que chamam uma função no objeto (variavel) 
+
+Passagem de argumento função: apenas copia e referencia
+    passagem por copia: copia o valor para outra variavel -
+     se for um ponteiro deve copiar o endereço
+    passagem por referencia: copia o endereço da variavel - 
+    se for um ponteiro vai receber o ponteiro
+
+void foo (const int &*x) evita copia 
+
+Classes
+    dados + funções
+    da pra usar tipotemplate.chamada de funçao
+
+    Class vs Struct 
+        class tem função 
+        struct: se não escrever nada o padrão é publico
+        class: se nao tiver definida o padrão é private
+
+
+    public private
+        area privada e area publica
+            privada: so existe dentro da classe
+            public: pode ser acessado por qualquer parte do codigo/
+             nao colocar dados na area publica, somente na area privada
+
+Programar em ingles, colocar indentificação em variaveis (vValor, vTriangulo, vP, vA)
+
+Mesma coisa
+    p=&t1
+    (*p).b=5
+    t1.b=5
+    p->b=5
+
+Template é um modelo, passa a ter tipo só quando declara
+
+this -> a * this -> b && (*this).a * (*this).b
+ objeto chamador
+ diferenciar o dado do argumento
+
+Geters e Seters
+    Geters: getDado
+    Seters: setDado (retorna void geralmente)
+retorno por referencia
+    &float getbase()
+
+
+definição de dados e procedimentos:
+    quais dados definem este objeto na visãao de quem usa sua classe?
+        o que define o objeto sao seus dados
+
+    quais informaçoes necessiamos obter e alterar nesse objeto?
+
+    quais informaçoes ou dados possuem independencia 
+
+    necessitamos de outros dados auxiliares ou alguma ação?
+
+    dado: característica
+    procedimento: ação/dependente das características(dado)

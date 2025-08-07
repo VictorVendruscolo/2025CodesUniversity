@@ -1,0 +1,28 @@
+linux wsl 
+    por cima do linux pra evitar máquina virtual
+
+parametro na função get
+    geralmente nao usa
+
+so coloca comando dentro do destrutor ~ se tiver que fazer algo quando o destrutor apaga
+    ponteiro
+
+y=x++ e y=++x
+    prova
+
+endl contante de saltar linha
+
+Contrutor parametrizado
+
+evitar a copia, usa &
+evitar alterar a refencia, usa o const
+
+
+parametros com valor padrao linha 10
+
+objeto por parâmetro
+
+funções contantes e funções não constantes (operador)
+    marcar funçõs que sao contantes como constantes
+
+setX e setY linha75

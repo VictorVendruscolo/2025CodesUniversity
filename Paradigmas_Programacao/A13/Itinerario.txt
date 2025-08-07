@@ -1,0 +1,12 @@
+Caso queria alterar o retorno da função no caso de uma referência para um inteir:
+    alterar o tipo de retorno na declaração da função na classe herdeira, por exemplo
+
+Biblioteca BOOST para templates
+
+Tarefa:
+    Herdar a classe (escolher o tipo)
+    Criar um Deck (inserção e remoção)
+    Nome das funções: pushback/front, popback/front
+    Back: Onde está o "topo" da pilha
+    PushFront: pushback com uma sequencia de swaps para levar o valor inserido até o início
+    

@@ -1,0 +1,3 @@
+evitar usar ponteiros crus
+    templates, ponteiros inteligentes
+

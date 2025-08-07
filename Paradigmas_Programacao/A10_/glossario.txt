@@ -1,0 +1,35 @@
+operadores de incremento e decremento
+    a=3
+    x=a++       y=++a
+    x=a;a=a+1;   a=a+1;y=a;
+    x=3         y=4
+    x=4         y=5
+
+    x=a+++b;
+    x=(a++)+b
+
+    a+++++b
+    (a++)+(++b)
+
+    ++a++
+    (++a)++
+
+    ++a - soma 1 mas retorna o valor antigo
+
+    operator ++(){ } //pré fixado
+    operator ++(int){ }//pós fixado
+
+Nem sempre queremos retornar referencia no operador de indice
+    nao retornar referencia quando nao haver necessidade de alterar o vetor principal
+
+Index por caractere
+    metodo maps
+        Array T -> Array U
+        organizado por numero mas relacionado por qualquer coisa pre ordenada
+           0    1   2   3
+         T a    b   c   d 
+         U 97   98  99  100
+
+map 
+    multimap
+    

@@ -1,0 +1,26 @@
+os valores com valor padrão ficam sempre a direita
+    VStack(unsigned capacity = 2):
+
+return *(ptr.get()+topIndex-1);
+    (ptr.get()+topIndex-1): endereço da memória que eu quero retornar
+    por isso dereferenciamos ele
+
+ptr.get
+
+função reserve
+    privada nesse caso
+
+resolver os problemas onde eles ocorrem
+    auxilia ao adicionar novas funções que usam, no caso, reserve
+
+exceção se lança quando não tem o que fazer
+
+estudar dados membros
+
+
+-------------//------------//-------------------//----------//
+
+matéria nova: sobrecarga de operador
+
+
+

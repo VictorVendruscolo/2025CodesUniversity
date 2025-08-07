@@ -1,0 +1,29 @@
+namespace - ?
+
+
+iostream -> biblioteca de templates
+
+notação vetor "const tipo* variável"
+
+cast implícito e explícito ?
+
+'>>', '<<' = operadores de extração 
+
+Tipos: 
+
+    int = depende do tamanho de bits do compilador
+    char = 8 bits = 1 byte
+    void = tipo vazio que não tem tamanho, só indicação
+
+Modificadores de tipo: ja atribuem int automatico
+
+    unsigned -> não tem sinal =, ganha um bit a mais
+    short = diminui na metade os bits (economia de memória)
+    long = dobra os bits
+
+Ponteiro: tem tamanho fixo do endereço da máquina
+    ponteiro tipo void ?
+
+Const: atribui aquele valor como constante (avisa quando tenta mudar)
+
+Site: cplusplus.com 

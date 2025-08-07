@@ -1,0 +1,28 @@
+operador de casting (conversão)
+    casting implícito:
+        int i = 'a' -> representação numérica de acordo com tabela ASC
+    casting explícito:
+        int i = (int) 'a' 
+    char c = i -> expressa a[]
+
+questão de prova:
+    classe besta get set 
+    implementar na classe as "duas direções" 
+    contrutor de cópia e operador 
+
+contrutor de 2 parametros
+
+math.h pra prova
+
+atam & atam2 -> prova
+
+cria estrutura 
+    no na privada
+        define 
+
+classe alinhada/aninhada
+
+resolver p1 do moodle
+
+
+

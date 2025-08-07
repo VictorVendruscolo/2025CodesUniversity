@@ -1,0 +1,40 @@
+depuração de código
+    aprender a usar 
+        estudo e correção
+
+copiar código da aula
+
+nao colocar função de impressão dentro da classe de fração
+
+c pa cai fração na prova
+
+classe string toString
+    converter em string
+
+função statica
+    sem a necessidade de haver um objeto
+
+escopo "::" acessar função dentro da classe
+    resolve escopo
+
+operadores unarios, binarios e ternarios
+    ternarios a gente nao consegue sobrecarregar
+
+++x
+    função onde o x é o this
+    operadores que retorna do tipo da classe
+
+x<y
+    função onde o x é this e o y é other
+    operador que retorna booleano
+
+tarefa de fixação
+    criar sobreoperações de todos os operadores
+
+mmc fica na privada
+    usada pra calcular operações (essas publicas) de frações
+
+implementar a simplificação da soma das frações pra garantir que a 
+fração sempre esteja simplificada 
+
+

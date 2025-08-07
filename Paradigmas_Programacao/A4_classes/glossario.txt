@@ -1,0 +1,34 @@
+revisao aula3
+
+memory
+ shared_ptr
+     reset() 
+        identificadores e seus polimofirmos 
+            identificadores = e argumentos !=
+                o argumento que vai diferenciar
+
+Aula4
+
+
+Polimofirmos e argumentos de função 
+
+Encapsulamento e Esconder
+
+    validar dado nos seters*
+
+Herança 
+    característa onde um objeto que pode herdar qualquer caracteristica e funcionalidade de outra classe base
+    classe base/classes derivadas
+
+Leitura e escrita de arquivo C++
+    cout / cin vs scanf / printf
+
+soquets
+
+Polimorfismo e Sobrecarga
+    polimorfismo: usar o mesmo nome para definir formas distintas
+    sobrecarga: uma forma de polimorfismo. ex. operador +
+
+Construtor e Destrutor
+
+memória não zera os espaços 
