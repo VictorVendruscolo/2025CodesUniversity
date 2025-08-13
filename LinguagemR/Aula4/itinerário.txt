@@ -1,0 +1,4 @@
+Gerar sequências
+    seq(1,20,5) -> esse pode escolher o intervalo ( 5 em 5, nesse caso)
+    1:20 -> esse vai de um em um
+
