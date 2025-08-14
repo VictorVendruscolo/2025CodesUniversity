@@ -1,0 +1,46 @@
+14/08/2025
+
+Famosas DLLs
+    implementar sem precisar recompilar o código... conversa pra mais a frente
+
+
+
+DFygs *ptr = new DQuad
+DFygs *ptr = new DTriang
+DFygs *V[2];
+V[0] = new DQuad
+V[1] = new DTriang
+
+
+Operação de resolução de escopo:
+    Quando tem herança com template tem que especificar a classe base usando o perador de resolução escopo
+
+Na OO a gente procura não reescrever código:
+    Pontos de Extensão: coisas prontas para extender o código
+        Criamos uma classe abstrata capaz de representar, se necessário, qualquer objeto que quisermos criar, usamos a herança dessa classe abstrata e acrescentamos o que for especíico
+        Todas as funções que fizermos para o objeto abstrato deve funcionar para o objeto específico, de acordo com suas características
+
+Em C++ as funções trabalham recebendo listas de expressões (separadas por vírgula) e expressões (separados por ;)
+    (i=0, n=2; i<n; ++i) -> (i=-1, n=2; ++i, i<n; ) faz na mesma ordem, mas não tem expressões (LISTA DE EXPRESSAO) de incremento
+
+Quando chamamos a função via ponteiro ele chama a função da classe que representa o ponteiro, não do objeto (dentro do vetor que o ponteiro aponta)
+
+Função Virtual (em JAVA o funcionamento normal é Virtual)
+    quando voce reescreve uma função que é virtual pura (abstrata) em uma classe herança, ela normalmente é virtual, mas por boa prática a gente escreve virtual nela tambem
+    virtual float calcArea() = 0; 
+
+Classe Abstrata: Classe com funções puras - Interface (classes que compatibilitam coisas que serão criadas)
+
+
+#define ATRIB(x,y) x = y
+
+#define SWAP(x,y) /
+    int aux; /
+    aux = x; /
+    ATRIB(x,y);/
+    ATRIB(y,aux);/
+
+substitui ->  SWAP(a,b) e ATRIB(a,b)
+define só altera sintaxe, substitui onde tem a palavra chave pela definição que voce deu.
+
+

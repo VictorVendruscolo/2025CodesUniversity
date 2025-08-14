@@ -3,6 +3,7 @@ Caso queria alterar o retorno da função no caso de uma referência para um int
 
 Biblioteca BOOST para templates
 
+
 Tarefa:
     Herdar a classe (escolher o tipo)
     Criar um Deck (inserção e remoção)
