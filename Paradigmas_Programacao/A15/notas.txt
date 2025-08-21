@@ -1,0 +1,30 @@
+21/08
+
+Arquivos de teste para o jogo (trabalho)
+    GitHub
+    Biblioteca compilada para visual
+    Trabalho independente da interface
+    Interface após o arquivo de jogadas
+
+Só depois de implementar todas as classes virtuais pode se criar objeto
+    pode levar a função abstrata por toda herança
+
+Parar de usar Vetor padrão, usar Vector tecnologia do CPP
+
+Iterator
+    begin e rbegin -> inicio e fim
+    end e rend -> pos fim e pre inicio
+    saber percorrer qualquer estrutura usando o iterator it
+    "auto it;" facilita quando ta muita enrrosqueira, mas evitamos usar
+    "vector<DFigs*>::iterator it;"
+
+Incluir classe nova no arquivo  
+    usar define
+
+Construtores na herança
+    Primeiro executa o Contrutor da Classe Base (por meio da chamada do condtrutor da classe base) e deopis da Herdada
+    Já o Destrutor é no sentido oposto
+    Se não especificar o parametro ele usa o padrao no contrutor da base, mesmo sendo passado valor para o contrutor da herança
+    A ordem de declaração das heranças é a ordem de chamada do construtor do objeto se não tiver declarado no construtor da herança
+
+Tarefa...
