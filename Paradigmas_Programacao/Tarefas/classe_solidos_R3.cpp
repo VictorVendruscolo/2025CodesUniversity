@@ -10,6 +10,7 @@ class DSolido
 public:
     virtual float calcArea() = 0;
     virtual float calcVolume() = 0;
+    virtual ~DSolido() = default; // Adiciona destrutor virtual
 };
 
 // Classe para Esfera
@@ -41,7 +42,7 @@ public:
 
     virtual float calcArea()
     {
-        return 2.0 * PI * r * (r + h);
+        return 2.0 * PI * r * r + 2.0 * PI * r * h; // Corrigido: área total = área das bases + área lateral
     }
 
     virtual float calcVolume()

@@ -1,0 +1,52 @@
+Trabalho PP:
+    MSVS - Configurar VisualStudio no VSCode. Tem CLion também (1 ano grátis e pode renovar)
+    MSVC - Compilador
+
+Comandos:
+    diretórios: cd
+    compilator: cl - cl main.cpp
+    del man.exe
+    main.exe
+
+Solver = Resolvedor
+Quem esta com as peças pretas só tem o Rei
+Numero de jogadas máximas para check mate
+Entrada= posição inicial das peças/Saída = arquivo da anotação algebrica extendida
+
+Parte 1: lógica
+Parte 2: Lista de casos de Teste (lvls - arquivos de teste) (cfml) 
+        Caso tenha o arquivo com a solução - mostra/ se não tiver - gera o arquivo solução - armazena - apresenta
+
+Biblioteca Gráfica: cfml
+
+Teste de jogadas: Back Track (arvore de possibilidades (somente recurssão - não guarda os movimentos, apenas joga e se não der, volta) - menor galho - volta guardando no arquivo)
+    CUIDAR COM O SUICÍDIO DO REI (burrice do rei)
+
+Não é inteligente, é força bruta
+    inteligente seria arvore min-máx
+
+Peças pretas que não se movem são dadas como buracos, para teste. quando tiver que interagir, deixar vazio. DEIXA SÓ O REI
+    Coloca um buraco - mas tem que ter extensão de paças caso o professor queira colocar uma peça nova
+    Caso de teste que precisa comer peça, ignorar
+    Sempre vai ser buraco nas peças inúteis
+
+
+Estrutura de dados = 8x8 - a1 - 0,0 (preta) é o mais a esquerda do retângulo passado, incluindo buracos
+
+Programa deve ler um diretório para usar o arquivo para teste; usando system dir...
+
+Notação Algébrica Longa para registrar os passos do Programa
+
+Arquivo de entrada com extensão padronizada = pcin
+Arquivo de saída com extensão padronizada = pcout
+
+Só pode mexer na main - ou usar defines - para criar classes
+
+Duas classes, uma para parte de cálculo e outra para parte Gráfica
+
+Se mate em 2, e era em 3, o rei fez burrada, desconsiderar. Caso contrário, é o que aparecer
+
+
+
+
+
