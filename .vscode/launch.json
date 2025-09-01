@@ -48,8 +48,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "c:/Users/Victor Vendruscolo/OneDrive/Documentos/GitHub/2025CodesUniversity/LinguagemR/Aula6",
+      "program": "c:/Users/Victor Vendruscolo/OneDrive/Documentos/GitHub/2025CodesUniversity/LinguagemR/Aula6/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
