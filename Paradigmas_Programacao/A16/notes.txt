@@ -47,6 +47,20 @@ Duas classes, uma para parte de cálculo e outra para parte Gráfica
 Se mate em 2, e era em 3, o rei fez burrada, desconsiderar. Caso contrário, é o que aparecer
 
 
+------- DIA DOIS EXPLICAÇÃO ----------
+ 
+Aprendendo a usar SFML 
 
+- doc = documentação, etc
+- include = .hpps 
+    .h + .lib -> compilar
+- lib = bibliotecas
+    não contém o executável, mas contém ligações para unir e executar com a dll
+- bin = arquivos.dll
+    ajuda a fazer o debug, sem esse arquivo não consegue fazer (é mais lento)
+    execução das bibliotecas
 
+Aprender como funcionam essas coisas*
+
+Buscar na internet como criar projeto pronto para sfml e como usar no Visual Studio 
 
