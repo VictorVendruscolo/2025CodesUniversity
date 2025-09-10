@@ -18,10 +18,10 @@
 	No processo de compilação é necessário usar a opção -lncurses
 	Ex.: gcc -o main main.c -lncurses
 */
-
+/*
 #include <stdint.h>
 #include <string.h>
-#include <ncurses.h>
+#include <curses.h> //! ncurses.h para WSL
 
 struct __s_no
 {
@@ -100,3 +100,4 @@ void imprime_arvore(const void *ptraiz)
 	getch();
 	endwin();
 }
+*/
