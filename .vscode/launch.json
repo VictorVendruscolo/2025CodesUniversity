@@ -48,8 +48,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Victor Vendruscolo/OneDrive/Documentos/GitHub/2025CodesUniversity/Paradigmas_Programacao/A16",
-      "program": "c:/Users/Victor Vendruscolo/OneDrive/Documentos/GitHub/2025CodesUniversity/Paradigmas_Programacao/A16/build/Debug/outDebug",
+      "cwd": ".",
+      "program": "build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
