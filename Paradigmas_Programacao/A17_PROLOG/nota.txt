@@ -1,0 +1,5 @@
+Usaremos na prova SWI-PROLOG
+Linguagem interpretada - mas existem compiladores hoje
+Programa de prolog dividido em Fatos e Regras
+pai/1 quer dizer que so tem um argumento
+pai/2 significa 2 argumentos
