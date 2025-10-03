@@ -1,0 +1,29 @@
+=========================================
+INFORMAÇÕES DO SISTEMA - TRABALHO AEDII
+Prof. Fabrício Sérgio de Paula - UEMS
+=========================================
+
+Data/Hora: sex 03 out 2025 18:28:22 -04
+
+Sistema Operacional:
+Ubuntu 22.04.2 LTS
+Kernel: 6.2.0-35-generic
+Arquitetura: x86_64
+
+Processador:
+
+Núcleos: 4
+Frequência: 3900,0000 800,0000 MHz
+
+Memória:
+RAM Total: 
+RAM Disponível: 
+
+Compilador:
+gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+
+Arquivos de teste:
+Resultados: 157 linhas
+Data dos testes: 2025-10-03 18:21:49
+
+=========================================
