@@ -1,0 +1,10 @@
+Nome_Limpo,Tempo_Min,Tempo_Max,Tempo_Medio_Aleatório,Tempo_Medio_Crescente,Tempo_Medio_Decrescente,Variabilidade_Aleatório,Variabilidade_Crescente,Variabilidade_Decrescente
+Quick (aleatório),0,4.755,0.6603749999999999,NA,NA,1.6609640004269466,NA,NA
+Quick (aleatório),0,2.004,NA,0.281375,NA,NA,0.6992056589955694,NA
+Quick (aleatório),0,2.177,NA,NA,0.305375,NA,NA,0.7596169970076085
+Quick (mediana),0,4.409,0.611375,NA,NA,1.540200537731555,NA,NA
+Quick (mediana),0,0.959,NA,0.135,NA,NA,0.33423345134800614,NA
+Quick (mediana),0,2.067,NA,NA,0.28687500000000005,NA,NA,0.7217335158194768
+Quick (último),0,0.008,0.002,NA,NA,0.0034641016151377548,NA,NA
+Quick (último),0,3.297,NA,0.671,NA,NA,1.4681743765643098,NA
+Quick (último),0,2.92,NA,NA,0.594,NA,NA,1.3004353117321907

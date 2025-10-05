@@ -13,13 +13,11 @@ library(readr)
 library(scales)
 # Ler os dados
 dados <- read_csv("resultados_testes.csv")
-
 # Visualizar estrutura dos dados
 str(dados)
 summary(dados)
 
 # ========== ANÁLISE 1: COMPARAÇÃO GERAL ==========
-
 # Gráfico 1: Tempo vs Tamanho por Algoritmo
 p1 <- ggplot(dados, aes(x = Tamanho, y = Tempo_Segundos, color = Nome_Algoritmo)) +
   geom_line(size = 1) +

@@ -1,0 +1,113 @@
+Tamanho,Tipo_Entrada_Nome,Nome_Limpo,Tempo_Segundos,Ranking
+10,Aleatório,Bubble Original,0,1
+10,Aleatório,Bubble Melhorado,0,2
+10,Aleatório,Insertion Sort,0,3
+10,Aleatório,Mergesort,0,4
+10,Aleatório,Quick (último),0,5
+10,Aleatório,Quick (aleatório),0,6
+10,Aleatório,Quick (mediana),0,7
+10,Aleatório,Heapsort,0,8
+10,Crescente,Bubble Original,0,1
+10,Crescente,Bubble Melhorado,0,2
+10,Crescente,Insertion Sort,0,3
+10,Crescente,Mergesort,0,4
+10,Crescente,Quick (último),0,5
+10,Crescente,Quick (aleatório),0,6
+10,Crescente,Quick (mediana),0,7
+10,Crescente,Heapsort,0,8
+10,Decrescente,Bubble Original,0,1
+10,Decrescente,Bubble Melhorado,0,2
+10,Decrescente,Insertion Sort,0,3
+10,Decrescente,Mergesort,0,4
+10,Decrescente,Quick (último),0,5
+10,Decrescente,Quick (aleatório),0,6
+10,Decrescente,Quick (mediana),0,7
+10,Decrescente,Heapsort,0,8
+100,Aleatório,Bubble Original,0,1
+100,Aleatório,Bubble Melhorado,0,2
+100,Aleatório,Insertion Sort,0,3
+100,Aleatório,Mergesort,0,4
+100,Aleatório,Quick (último),0,5
+100,Aleatório,Quick (aleatório),0,6
+100,Aleatório,Quick (mediana),0,7
+100,Aleatório,Heapsort,0,8
+100,Crescente,Bubble Original,0,1
+100,Crescente,Bubble Melhorado,0,2
+100,Crescente,Insertion Sort,0,3
+100,Crescente,Mergesort,0,4
+100,Crescente,Quick (último),0,5
+100,Crescente,Quick (aleatório),0,6
+100,Crescente,Quick (mediana),0,7
+100,Crescente,Heapsort,0,8
+100,Decrescente,Bubble Original,0,1
+100,Decrescente,Bubble Melhorado,0,2
+100,Decrescente,Insertion Sort,0,3
+100,Decrescente,Mergesort,0,4
+100,Decrescente,Quick (último),0,5
+100,Decrescente,Quick (aleatório),0,6
+100,Decrescente,Quick (mediana),0,7
+100,Decrescente,Heapsort,0,8
+1000,Aleatório,Mergesort,0,1
+1000,Aleatório,Quick (último),0,2
+1000,Aleatório,Quick (aleatório),0,3
+1000,Aleatório,Quick (mediana),0,4
+1000,Aleatório,Heapsort,0,5
+1000,Crescente,Bubble Melhorado,0,1
+1000,Crescente,Insertion Sort,0,2
+1000,Crescente,Mergesort,0,3
+1000,Crescente,Quick (aleatório),0,4
+1000,Crescente,Quick (mediana),0,5
+1000,Crescente,Heapsort,0,6
+1000,Decrescente,Mergesort,0,1
+1000,Decrescente,Quick (aleatório),0,2
+1000,Decrescente,Quick (mediana),0,3
+1000,Decrescente,Heapsort,0,4
+10000,Aleatório,Mergesort,0.001,1
+10000,Aleatório,Quick (último),0.002,2
+10000,Aleatório,Quick (mediana),0.002,3
+10000,Aleatório,Heapsort,0.002,4
+10000,Crescente,Bubble Melhorado,0,1
+10000,Crescente,Insertion Sort,0,2
+10000,Crescente,Mergesort,0.001,3
+10000,Crescente,Quick (aleatório),0.001,4
+10000,Crescente,Quick (mediana),0.001,5
+10000,Decrescente,Quick (aleatório),0,1
+10000,Decrescente,Quick (mediana),0,2
+10000,Decrescente,Mergesort,0.001,3
+100000,Aleatório,Quick (último),0.008,1
+100000,Aleatório,Mergesort,0.01,2
+100000,Aleatório,Quick (mediana),0.023,3
+100000,Crescente,Bubble Melhorado,0,1
+100000,Crescente,Insertion Sort,0.001,2
+100000,Crescente,Quick (aleatório),0.005,3
+100000,Decrescente,Quick (aleatório),0.008,1
+100000,Decrescente,Mergesort,0.009,2
+100000,Decrescente,Quick (mediana),0.012,3
+500000,Aleatório,Quick (mediana),0.068,1
+500000,Aleatório,Quick (aleatório),0.069,2
+500000,Aleatório,Mergesort,0.081,3
+500000,Aleatório,Heapsort,0.081,4
+500000,Crescente,Quick (mediana),0.029,1
+500000,Crescente,Mergesort,0.045,2
+500000,Crescente,Quick (aleatório),0.048,3
+500000,Decrescente,Quick (mediana),0.042,1
+500000,Decrescente,Mergesort,0.043,2
+500000,Decrescente,Quick (aleatório),0.05,3
+5000000,Aleatório,Quick (mediana),0.389,1
+5000000,Aleatório,Quick (aleatório),0.43,2
+5000000,Aleatório,Mergesort,0.604,3
+5000000,Crescente,Quick (mediana),0.085,1
+5000000,Crescente,Mergesort,0.186,2
+5000000,Crescente,Quick (aleatório),0.193,3
+5000000,Decrescente,Quick (mediana),0.174,1
+5000000,Decrescente,Mergesort,0.176,2
+5000000,Decrescente,Quick (aleatório),0.208,3
+50000000,Aleatório,Quick (mediana),4.409,1
+50000000,Aleatório,Quick (aleatório),4.755,2
+50000000,Aleatório,Mergesort,6.9,3
+50000000,Crescente,Quick (mediana),0.959,1
+50000000,Crescente,Quick (aleatório),2.004,2
+50000000,Crescente,Mergesort,2.208,3
+50000000,Decrescente,Quick (mediana),2.067,1
+50000000,Decrescente,Mergesort,2.098,2
+50000000,Decrescente,Quick (aleatório),2.177,3
