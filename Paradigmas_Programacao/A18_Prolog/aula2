@@ -1,0 +1,48 @@
+Prolog não é tipado
+Quadr is Dado*Dado
+Voce escolher a função para inciar (no caso do C nao tem escolha, é main)
+Predicados de controle
+    fail/0
+        retrocede
+    true/0
+    repeat/0
+
+Operador de corte 
+    !
+        se eu passei por essa... eu vou pro fim, sla
+
+Comandos Condicionais 
+    if-then
+    if-else 
+
+negaçaão por falha 
+    \+/1
+
+Metapredicados 
+    call/1 e once/1
+
+Falha do lado direito do operador de corte impede é uma falha
+    pai(X,Y), write(pai(X,Y)), nl, fail -> executa 3x e falha
+    pai(X,Y), write(pai(X,Y)), nl, !, fail -> executa 1x e falha
+
+Delair não gosta do jetio max00, com ponto e virgula. ele prefere mais visual, cada um em uma linha
+Delair gosta do corte vermelho, porque o corte muda o significado logico do predicado
+
+Comando condicional deve vir entre parenteses porque o ponto e virgula tem precedencia em cima da 
+Pode usar os ifs
+
+findall
+forall
+between
+
+(predicado) Is para valiar expressão
+
+"esquece essa barra, usa vírgula que é igual"
+
+is e os sinais de comparação
+
+Tem que saber manipular lista - prova ate o capítulo 4 e o comecinho do capitulo 5 (is e operador maior que e menor que)
+
+Opicional: base de dados
+
+Trace no software para depurar, como usar o software para programar e consultar o arquivo 
