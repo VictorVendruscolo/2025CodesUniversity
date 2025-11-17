@@ -5,7 +5,7 @@ Trabalho PP:
 Comandos:
     diretórios: cd
     compilator: cl - cl main.cpp
-    del man.exe
+    del main.exe
     main.exe
 
 Solver = Resolvedor
@@ -64,6 +64,6 @@ Aprender como funcionam essas coisas*
 
 Buscar na internet como criar projeto pronto para sfml e como usar no Visual Studio 
 
-A mão só tem a criação de objeto e o funcionamento fica em funções modularizadas
+A main só tem a criação de objeto e o funcionamento fica em funções modularizadas
 
 Caprichar na Interface 
