@@ -1,0 +1,52 @@
+<!doctype_html>
+<hmtl lang="pt_br"
+    <head>
+        <tittle>Cookies</tittle>
+        <meta charset="UTF-8">
+        <script>
+            function criarCookie(nome, valor, expira)
+            {
+                var dtExpira = "expires= " +expira; 
+                document.cookie = nome + "=" + valor + ";" + dtExpira;
+            }
+            
+            function lerCookie(nome)
+            {
+                var vnome = nome + " = "; 
+                var ca = document.cookie.split(';');
+                for(var i = 0; i < ca.length; i++)
+                {
+                    var c = ca[i];
+                    while (c.charAt(0) == '')
+                    {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(vnome) == 0)
+                    {
+                        return c.substring(vnome.length, c.length);
+                    }
+                }
+            return "";
+            }
+
+            function iniCookie()
+            {
+                var usaname = lerCookie("cookie_aula_redes");
+                if(username != "")
+                {
+                  alert("Bem vindo novamente " + username);
+                }
+                 else
+                {
+                    username = prompt("Digite seu nome: ", "");
+                    if(username != "" && username != null)
+                    {
+                        criarCookie("cookie_aula_redes", username, "Tue, 01 Jan 2050 12:00:00 UTC ");
+                    }
+                }
+            }
+        </script>
+    </head>
+    <body onload="iniCookie()">
+    </body>
+</hmtl>
