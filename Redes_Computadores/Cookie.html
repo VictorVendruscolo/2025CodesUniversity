@@ -1,7 +1,7 @@
-<!doctype_html>
-<hmtl lang="pt_br"
+<!DOCTYPE html>
+<html lang="pt-br">
     <head>
-        <tittle>Cookies</tittle>
+        <title>Cookies</title>
         <meta charset="UTF-8">
         <script>
             function criarCookie(nome, valor, expira)
@@ -17,29 +17,29 @@
                 for(var i = 0; i < ca.length; i++)
                 {
                     var c = ca[i];
-                    while (c.charAt(0) == '')
+                    while (c.charAt(0) == ' ')
                     {
                         c = c.substring(1);
                     }
-                    if (c.index0f(vnome) == 0)
+                    if (c.indexOf(vnome) == 0)
                     {
                         return c.substring(vnome.length, c.length);
                     }
                 }
-            return "";
+            return " ";
             }
 
             function iniCookie()
             {
-                var usaname = lerCookie("cookie_aula_redes");
+                var username = lerCookie("cookie_aula_redes");
                 if(username != "")
                 {
                   alert("Bem vindo novamente " + username);
                 }
                  else
                 {
-                    username = prompt("Digite seu nome: ", "");
-                    if(username != "" && username != null)
+                    username = prompt("Digite seu nome: ", " ");
+                    if(username != " " && username != null)
                     {
                         criarCookie("cookie_aula_redes", username, "Tue, 01 Jan 2050 12:00:00 UTC ");
                     }
@@ -49,4 +49,4 @@
     </head>
     <body onload="iniCookie()">
     </body>
-</hmtl>
+</html>
