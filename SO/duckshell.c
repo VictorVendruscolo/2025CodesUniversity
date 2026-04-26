@@ -9,46 +9,46 @@
 #define MAX_INPUT 255 //Tamanho máximo do buffer de type-ahead do terminal
 #define MAX_ARGS 7  //comando + 5 argumentos (max) + NULL 
 
-void print_tree(int pid, int depth) { // função recursiva para imprimir a árvore de processos
-    char path[256];
-    FILE *f;
-    int p, ppid;
-    char name[256], state[4];
+void imprimir_arvore(int pid_processo, int profundidade) { // função recursiva para imprimir a árvore de processos
+    char caminho[256];
+    FILE *arquivo;
+    int pid_atual, pid_pai;
+    char nome[256], estado[4];
 
-    snprintf(path, sizeof(path), "/proc/%d/stat", pid);
-    f = fopen(path, "r");
-    if (!f) return;
+    snprintf(caminho, sizeof(caminho), "/proc/%d/stat", pid_processo);
+    arquivo = fopen(caminho, "r");
+    if (!arquivo) return;
 
-    fscanf(f, "%d %s %s %d", &p, name, state, &ppid);
-    fclose(f);
+    fscanf(arquivo, "%d %s %s %d", &pid_atual, nome, estado, &pid_pai);
+    fclose(arquivo);
 
-    for (int i = 0; i < depth; i++) printf("  ");
-    printf("%d %s\n", pid, name);
+    for (int i = 0; i < profundidade; i++) printf("  ");
+    printf("%d %s\n", pid_processo, nome);
 
-    //olha os filhos
-    DIR *dir = opendir("/proc");
-    if (!dir) return;
+    // olha os filhos
+    DIR *diretorio = opendir("/proc");
+    if (!diretorio) return;
 
-    struct dirent *entry;
-    while ((entry = readdir(dir)) != NULL) { // percorre os processos em /proc
-        int child_pid = atoi(entry->d_name);
-        if (child_pid <= 0) continue;
+    struct dirent *entrada;
+    while ((entrada = readdir(diretorio)) != NULL) { // percorre os processos em /proc
+        int pid_filho = atoi(entrada->d_name);
+        if (pid_filho <= 0) continue;
 
-        char cpath[256];
-        snprintf(cpath, sizeof(cpath), "/proc/%d/stat", child_pid);
-        FILE *cf = fopen(cpath, "r");
-        if (!cf) continue;
+        char caminho_filho[256];
+        snprintf(caminho_filho, sizeof(caminho_filho), "/proc/%d/stat", pid_filho);
+        FILE *arquivo_filho = fopen(caminho_filho, "r");
+        if (!arquivo_filho) continue;
 
-        int cp, cppid;
-        char cname[256], cstate[4];
-        fscanf(cf, "%d %s %s %d", &cp, cname, cstate, &cppid);
-        fclose(cf);
+        int pid_proc, pid_pai_filho;
+        char nome_filho[256], estado_filho[4];
+        fscanf(arquivo_filho, "%d %s %s %d", &pid_proc, nome_filho, estado_filho, &pid_pai_filho);
+        fclose(arquivo_filho);
 
-        if (cppid == pid) {
-            print_tree(child_pid, depth + 1);
+        if (pid_pai_filho == pid_processo) {
+            imprimir_arvore(pid_filho, profundidade + 1);
         }
     }
-    closedir(dir);
+    closedir(diretorio);
 }
 
 int main(void) {
@@ -109,7 +109,7 @@ int main(void) {
                 fprintf(stderr, "tree: precisa de um PID\n");
             } else {
                 int pid = atoi(args[1]);
-                print_tree(pid, 0);
+                imprimir_arvore(pid, 0);
             }
             continue;
         }
