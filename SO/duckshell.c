@@ -9,7 +9,7 @@
 #define MAX_INPUT 255 //Tamanho máximo do buffer de type-ahead do terminal
 #define MAX_ARGS 7  //comando + 5 argumentos (max) + NULL 
 
-void print_tree(int pid, int depth) {
+void print_tree(int pid, int depth) { // função recursiva para imprimir a árvore de processos
     char path[256];
     FILE *f;
     int p, ppid;
@@ -23,15 +23,14 @@ void print_tree(int pid, int depth) {
     fclose(f);
 
     for (int i = 0; i < depth; i++) printf("  ");
-    /* name is between parentheses, print as-is */
     printf("%d %s\n", pid, name);
 
-    /* look for children */
+    //olha os filhos
     DIR *dir = opendir("/proc");
     if (!dir) return;
 
     struct dirent *entry;
-    while ((entry = readdir(dir)) != NULL) {
+    while ((entry = readdir(dir)) != NULL) { // percorre os processos em /proc
         int child_pid = atoi(entry->d_name);
         if (child_pid <= 0) continue;
 
