@@ -6,12 +6,11 @@
 #include <sys/wait.h>
 #include <dirent.h>
 
-#define MAX_INPUT 1024
-#define MAX_ARGS 7  /* program + up to 5 args + NULL */
+#define MAX_INPUT 255 //Tamanho máximo do buffer de type-ahead do terminal
+#define MAX_ARGS 7  //comando + 5 argumentos (max) + NULL 
 
 void print_tree(int pid, int depth) {
     char path[256];
-    char line[512];
     FILE *f;
     int p, ppid;
     char name[256], state[4];
@@ -57,50 +56,47 @@ int main(void) {
     char input[MAX_INPUT];
 
     while (1) {
-        printf("shell> ");
+        printf("duckshell> ");
         fflush(stdout);
 
         if (!fgets(input, sizeof(input), stdin)) break;
 
-        /* remove trailing newline */
+        // tira o \n do final da string
         input[strcspn(input, "\n")] = '\0';
 
         if (strlen(input) == 0) continue;
 
-        /* check for background execution */
         int background = 0;
         int len = strlen(input);
-        if (input[len - 1] == '&') {
-            background = 1;
-            input[len - 1] = '\0';
-            /* trim trailing space if any */
+        if (input[len - 1] == '&') { // verifica se o último caractere é '&' 
+            background = 1; // ativa execução em "background"
+            input[len - 1] = '\0'; //apaga o & do final da string
+            
             len = strlen(input);
-            while (len > 0 && input[len - 1] == ' ') {
+            while (len > 0 && input[len - 1] == ' ') { //limpeza dos espaços em branco
                 input[--len] = '\0';
             }
         }
 
-        /* tokenize */
         char *args[MAX_ARGS];
         int argc = 0;
-        char *token = strtok(input, " ");
-        while (token != NULL && argc < MAX_ARGS - 1) {
-            args[argc++] = token;
-            token = strtok(NULL, " ");
+        char *comando = strtok(input, " "); //divide os comandos
+        while (comando != NULL && argc < MAX_ARGS - 1) { 
+            args[argc++] = comando;
+            comando = strtok(NULL, " ");
         }
         args[argc] = NULL;
 
         if (argc == 0) continue;
 
-        /* built-in: exit */
         if (strcmp(args[0], "exit") == 0) {
+            printf("Encerrando duckshell...\n QUACK-QUACK (goodbye!)\n");
             break;
         }
 
-        /* built-in: cd */
         if (strcmp(args[0], "cd") == 0) {
             if (argc < 2) {
-                fprintf(stderr, "cd: missing argument\n");
+                fprintf(stderr, "cd: precisa de um argumento\n");
             } else {
                 if (chdir(args[1]) != 0) {
                     perror("cd");
@@ -109,10 +105,9 @@ int main(void) {
             continue;
         }
 
-        /* built-in: tree */
         if (strcmp(args[0], "tree") == 0) {
             if (argc < 2) {
-                fprintf(stderr, "tree: missing PID\n");
+                fprintf(stderr, "tree: precisa de um PID\n");
             } else {
                 int pid = atoi(args[1]);
                 print_tree(pid, 0);
@@ -120,12 +115,11 @@ int main(void) {
             continue;
         }
 
-        /* external command: fork + execlp */
-        pid_t pid = fork();
+        pid_t pid = fork(); //cria um processo filho
         if (pid < 0) {
             perror("fork");
         } else if (pid == 0) {
-            /* child: up to 5 additional args */
+            // suporte para até 5 argumentos
             execlp(args[0], args[0],
                    argc > 1 ? args[1] : NULL,
                    argc > 2 ? args[2] : NULL,
@@ -136,6 +130,7 @@ int main(void) {
             perror("execlp");
             exit(1);
         } else {
+            // suporte para execução em segundo plano
             if (!background) {
                 waitpid(pid, NULL, 0);
             }
