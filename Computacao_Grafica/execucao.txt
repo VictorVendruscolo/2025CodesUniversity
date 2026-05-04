@@ -1,0 +1,3 @@
+cd /home/victor/2025CodesUniversity/Computacao_Grafica
+g++ -Wall -Wextra -g3 TesteOpenGL.cpp -o output/TesteOpenGL -lglut -lGL -lGLU -lm
+./output/TesteOpenGL
