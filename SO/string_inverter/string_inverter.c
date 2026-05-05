@@ -14,15 +14,20 @@ typedef struct {
 void *inverter(void *param)
 {
     thread_args *args = (thread_args *)param;
-    int start = args->start;
-    int end = args->end;
+    int thread_id = args->thread_id;
+    int section_size = args->start;  /* n/8 */
+    int len = strlen(str);
     
-    while (start < end) {
-        char temp = str[start];
-        str[start] = str[end];
-        str[end] = temp;
-        start++;
-        end--;
+    /* Cada thread faz n/8 trocas, sem conflito */
+    for (int i = 0; i < section_size; i++) {
+        int start = thread_id * section_size + i;
+        int end = len - 1 - thread_id * section_size - i;
+        
+        if (start < end) {
+            char temp = str[start];
+            str[start] = str[end];
+            str[end] = temp;
+        }
     }
     
     free(args);
@@ -51,14 +56,14 @@ int main()
         len--;
     }
     
-    section_size = len / 4; /* divisão pode não ser exata */
+    section_size = (len + 7) / 8; /* cada thread pega n/8 do início e n/8 do final (ceil) */
     
     /* Cria 4 threads */
     for (int i = 0; i < 4; i++) {
         thread_args *args = malloc(sizeof(thread_args));
         args->thread_id = i;
-        args->start = i * section_size;
-        args->end = (i == 3) ? len - 1 : (i + 1) * section_size - 1;
+        args->start = section_size;  /* tamanho de cada seção (n/8) */
+        args->end = section_size;    /* tamanho de cada seção (n/8) */
         
         pthread_create(&tid[i], NULL, inverter, args);
     }
