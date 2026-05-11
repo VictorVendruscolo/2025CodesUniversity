@@ -43,23 +43,20 @@ void drawScene(void)
    // Set foreground (or drawing) color.
    glColor3f(0.5, 0.0, 0.0);
 
-   glPointSize(5.0); // Set point size to 5 by 5 pixels.
+   glPointSize(10.0); // Set point size to 5 by 5 pixels.
    // Draw a polygon with specified vertices.
 
-   glColor3f(1.0, 0.0, 0.0);
-      glBegin(GL_POLYGON);
-      glVertex3f(20.0, 20.0, 0.0);
-      glVertex3f(80.0, 20.0, 0.0);
-      glVertex3f(80.0, 80.0, 0.0);
-      glVertex3f(20.0, 80.0, 0.0);
-   glEnd();
-   glColor3f(0.1, 0.0, 0.0);
-      glBegin(GL_POLYGON);
-      glVertex3f(40.0, 40.0, 0.0);
-      glVertex3f(60.0, 40.0, 0.0);
-      glVertex3f(60.0, 60.0, 0.0);
-      glVertex3f(40.0, 60.0, 0.0);
-   glEnd();
+   //? glBegin: GL_POINTS; GL_LINES, GL_LINE_STRIP; GL_LINE_LOOP; GL_POLYGON; GL_TRIANGLES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, GL_QUADS, GL_QUAD_STRIP.
+
+   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); //  GL_POINT, GL_LINE, GL_FILL.
+
+glBegin(GL_POLYGON);
+glVertex3f(20.0, 20.0, 0.0);
+glVertex3f(80.0, 20.0, 0.0);
+glVertex3f(40.0, 40.0, 0.0);
+glVertex3f(20.0, 80.0, 0.0);
+glEnd();
+
 
 
    // Flush created objects to the screen, i.e., force rendering.
