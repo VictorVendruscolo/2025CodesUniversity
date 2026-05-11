@@ -5,6 +5,24 @@
 // 
 // Sumanta Guha.
 ////////////////////////////////////////////////////
+//! compilar e rodar:
+/* cd /home/victor/2025CodesUniversity/Computacao_Grafica
+   make
+   ./output/TesteOpenGL
+*/
+//? tabela de cores:
+//? glColor3f - 0 <= rgb <= 1.0
+//? glColor3i - 0 <= rgb <= 255
+/*glColor3f(0.0, 0.0, 0.0) Black
+glColor3f(1.0, 0.0, 0.0) Red
+glColor3f(0.0, 1.0, 0.0) Green
+glColor3f(0.0, 0.0, 1.0) Blue
+glColor3f(1.0, 1.0, 0.0) Yellow
+glColor3f(1.0, 0.0, 1.0) Magenta
+glColor3f(0.0, 1.0, 1.0) Cyan
+glColor3f(1.0, 1.0, 1.0) White*/
+
+
 
 #include <iostream>
 
@@ -23,16 +41,26 @@ void drawScene(void)
    glClear(GL_COLOR_BUFFER_BIT);
 
    // Set foreground (or drawing) color.
-   glColor3f(1.0, 1.0, 1.0);
+   glColor3f(0.5, 0.0, 0.0);
 
    glPointSize(5.0); // Set point size to 5 by 5 pixels.
    // Draw a polygon with specified vertices.
-   glBegin(GL_LINE_STRIP);
-      glVertex3f(40.0, 20.0, 0.0);
-      glVertex3f(20.0, 80.0, 0.0);
+
+   glColor3f(1.0, 0.0, 0.0);
+      glBegin(GL_POLYGON);
+      glVertex3f(20.0, 20.0, 0.0);
+      glVertex3f(80.0, 20.0, 0.0);
       glVertex3f(80.0, 80.0, 0.0);
-   
+      glVertex3f(20.0, 80.0, 0.0);
    glEnd();
+   glColor3f(0.1, 0.0, 0.0);
+      glBegin(GL_POLYGON);
+      glVertex3f(40.0, 40.0, 0.0);
+      glVertex3f(60.0, 40.0, 0.0);
+      glVertex3f(60.0, 60.0, 0.0);
+      glVertex3f(40.0, 60.0, 0.0);
+   glEnd();
+
 
    // Flush created objects to the screen, i.e., force rendering.
    glFlush(); 
@@ -42,7 +70,7 @@ void drawScene(void)
 void setup(void) 
 {
    // Set background (or clearing) color.
-   glClearColor(1.0, 0.0, 0.0, 0.0); 
+   glClearColor(0.0, 0.0, 0.0, 0.0); 
 }
 
 // OpenGL window reshape routine.
@@ -96,7 +124,7 @@ int main(int argc, char **argv)
    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB); 
    
    // Set OpenGL window size.
-   glutInitWindowSize(200, 200);
+   glutInitWindowSize(500, 500);
 
    // Set position of OpenGL window upper-left corner.
    glutInitWindowPosition(200, 200); 

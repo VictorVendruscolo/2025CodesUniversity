@@ -46,6 +46,10 @@ int main() {
         while(shm_data->in == shm_data->out)
             ; // Espera ocupada
 
+
+        usleep(100000); // sleep adicionado para ver a concorrência
+
+        
         int next_consumed = shm_data->buffer[shm_data->out];
         shm_data->out = (shm_data->out + 1) % BUFFER_SIZE;
 
