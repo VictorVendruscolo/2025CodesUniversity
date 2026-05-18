@@ -48,8 +48,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/victor/2025CodesUniversity/SO",
-      "program": "/home/victor/2025CodesUniversity/SO/build/Debug/outDebug",
+      "cwd": "/home/victor/2025CodesUniversity/Computacao_Grafica",
+      "program": "/home/victor/2025CodesUniversity/Computacao_Grafica/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

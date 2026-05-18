@@ -11,7 +11,7 @@
         "-g3",
         "${file}",
         "-o",
-        "${fileDirname}/output/${fileBasenameNoExtension}",
+        "${fileDirname}/${fileBasenameNoExtension}",
         "-lglut",
         "-lGL",
         "-lGLU",
