@@ -1,0 +1,7 @@
+[
+  {
+    "key": "f6",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Compile OpenGL"
+  }
+]

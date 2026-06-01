@@ -2,16 +2,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "C/C++ Runner: Debug Session",
+      "name": "Debug C/C++ (GLUT - WSL)",
       "type": "cppdbg",
       "request": "launch",
+      "program": "${fileDirname}/output/${fileBasenameNoExtension}",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/victor/2025CodesUniversity/Computacao_Grafica",
-      "program": "/home/victor/2025CodesUniversity/Computacao_Grafica/build/Debug/outDebug",
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": true,
       "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
       "setupCommands": [
         {
           "description": "Enable pretty-printing for gdb",

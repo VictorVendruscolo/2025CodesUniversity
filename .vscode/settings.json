@@ -1,4 +1,9 @@
 {
+  "C_Cpp.default.cppStandard": "c++17",
+  "C_Cpp.default.cStandard": "c11",
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {},
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

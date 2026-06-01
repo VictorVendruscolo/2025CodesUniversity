@@ -2,42 +2,21 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "cppbuild",
-      "label": "C/C++: gcc build active file (WSL)",
-      "command": "/usr/bin/gcc",
+      "type": "shell",
+      "label": "Compile OpenGL",
+      "command": "bash",
       "args": [
-        "-fdiagnostics-color=always",
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}/${fileBasenameNoExtension}"
+        "-c",
+        "sync && sleep 1 && cd '${fileDirname}' && g++ -Wall -Wextra -g3 '${fileBasename}' -o output/'${fileBasenameNoExtension}' -lGL -lGLU -lglut 2>&1 && echo '✓ SUCESSO - Arquivo compilado em output/${fileBasenameNoExtension}'"
       ],
-      "options": {
-        "cwd": "${fileDirname}"
-      },
-      "problemMatcher": ["$gcc"],
-      "group": {
-        "kind": "build",
-        "isDefault": false
-      }
-    },
-    {
-      "type": "cppbuild",
-      "label": "C/C++: gcc build active file (Windows)",
-      "command": "C:/msys64/ucrt64/bin/gcc.exe",
-      "args": [
-        "-g",
-        "${file}",
-        "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
-      ],
-      "options": {
-        "cwd": "${fileDirname}"
-      },
-      "problemMatcher": ["$gcc"],
       "group": {
         "kind": "build",
         "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false
       }
     }
   ]
