@@ -1,3 +1,10 @@
+/* Trabalho 2 - Sistemas Operacionais - Victor Rech Vendruscolo
+ - Arquitetura: Multiprocesso Monothread.
+ - Descrição: Processamento de dados simultâneo.
+ - Sincronização: Contadores atômicos sobre Memória Partilhada.
+ - Memória: Alocação própria via mapa de bits e endereçamento relativo. 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -10,11 +17,13 @@
 #define END_OF_LIST 0xFFFFFFFF
 #define SHM_NAME "/trabalho2_so_shm"
 
+// Nó usando offset garante que processos com endereços base distintos não crashem
 typedef struct {
     unsigned int value;
     unsigned int next;
 } Node;
 
+// Estrutura unificada para mapeamento na Memória Compartilhada (IPC)
 typedef struct {
     Node pool[MAX_NODES];
     volatile unsigned char bitmap[MAX_NODES]; 
@@ -27,6 +36,7 @@ typedef struct {
     unsigned int dummy_head;
 } SharedMem;
 
+// Alocador centralizado no Processo Pai (varredura circular)
 unsigned int allocate_node(SharedMem* shm) {
     static unsigned int last_alloc = 0;
     for (unsigned int i = 0; i < MAX_NODES; i++) {
@@ -50,23 +60,24 @@ int is_prime(unsigned int n) {
     return 1;
 }
 
+// Filtro 1: Remove pares > 2
 void process_p1(SharedMem* shm) {
     unsigned int prev = shm->dummy_head;
-    unsigned int pending_p1 = END_OF_LIST;
+    unsigned int pending_p1 = END_OF_LIST; // Delay release
     
     while (1) {
-        while (shm->items_for_p1 == 0 && !shm->p0_done) { }
+        while (shm->items_for_p1 == 0 && !shm->p0_done) { } // Espera ativa
         if (shm->items_for_p1 == 0 && shm->p0_done) break;
 
-        __sync_fetch_and_sub(&shm->items_for_p1, 1);
+        __sync_fetch_and_sub(&shm->items_for_p1, 1); // Consumo atômico
 
         unsigned int curr;
         while ((curr = shm->pool[prev].next) == END_OF_LIST) { }
 
         unsigned int val = shm->pool[curr].value;
         if (val > 2 && val % 2 == 0) {
-            shm->pool[prev].next = shm->pool[curr].next;
-            shm->bitmap[curr] = 0;
+            shm->pool[prev].next = shm->pool[curr].next; // Remove
+            shm->bitmap[curr] = 0;                       // Desaloca
         } else {
             prev = curr;
             if (pending_p1 != END_OF_LIST) {
@@ -79,9 +90,10 @@ void process_p1(SharedMem* shm) {
         __sync_fetch_and_add(&shm->items_for_p2, 1);
     }
     shm->p1_done = 1;
-    exit(0);
+    exit(0); // Destrói o processo filho
 }
 
+// Filtro 2: Remove não primos
 void process_p2(SharedMem* shm) {
     unsigned int prev = shm->dummy_head;
     unsigned int pending_p2 = END_OF_LIST;
@@ -114,10 +126,10 @@ void process_p2(SharedMem* shm) {
     exit(0);
 }
 
+// Consumidor 3: Escreve no arquivo
 void process_p3(SharedMem* shm) {
     unsigned int prev = shm->dummy_head;
     
-    // Abre o ficheiro out.txt para escrita no espaço do processo filho
     FILE *out_f = fopen("out.txt", "w");
     if (!out_f) exit(1);
 
@@ -130,25 +142,28 @@ void process_p3(SharedMem* shm) {
         unsigned int curr;
         while ((curr = shm->pool[prev].next) == END_OF_LIST) { }
 
-        // Escreve diretamente no ficheiro out.txt
         fprintf(out_f, "%u ", shm->pool[curr].value);
         fflush(out_f);
 
         prev = curr;
     }
     
-    fclose(out_f); // Fecha o ficheiro com segurança antes do exit
+    fclose(out_f);
     exit(0);
 }
 
+// Processo 0: Pai
 int main() {
-    shm_unlink(SHM_NAME);
+    shm_unlink(SHM_NAME); // Limpeza preventiva
 
+    // Cria arquivo virtual de Memória Compartilhada no Kernel
     int shm_fd = shm_open(SHM_NAME, O_CREAT | O_RDWR, 0600);
     if (shm_fd < 0) return 1;
 
+    // Dimensiona
     if (ftruncate(shm_fd, sizeof(SharedMem)) == -1) return 1;
 
+    // Mapeia para o espaço de RAM do processo Pai
     SharedMem* shm = mmap(0, sizeof(SharedMem), PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
     if (shm == MAP_FAILED) return 1;
 
@@ -157,6 +172,7 @@ int main() {
     shm->pool[shm->dummy_head].value = 0;
     shm->pool[shm->dummy_head].next = END_OF_LIST;
 
+    // Clona o espaço em 3 novos processos independentes
     pid_t p1 = fork();
     if (p1 == 0) process_p1(shm);
 
@@ -193,10 +209,12 @@ int main() {
     }
     shm->p0_done = 1;
     
+    // Aguarda finalização física de todos os filhos
     waitpid(p1, NULL, 0);
     waitpid(p2, NULL, 0);
     waitpid(p3, NULL, 0);
 
+    // Destrói os mapeamentos do SO
     munmap(shm, sizeof(SharedMem));
     shm_unlink(SHM_NAME);
 

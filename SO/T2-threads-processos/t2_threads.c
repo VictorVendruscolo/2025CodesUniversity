@@ -1,28 +1,40 @@
+/* Trabalho 2 - Sistemas Operacionais - Victor Rech Vendruscolo
+ - Arquitetura: Monoprocesso Multithread.
+ - Descrição: Processamento de dados simultâneo.
+ - Sincronização: Modelo lock-free usando contadores atômicos.
+ - Memória: Alocação própria via mapa de bits e endereçamento relativo. 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 
 #define MAX_NODES 1000050
-#define END_OF_LIST 0xFFFFFFFF
+#define END_OF_LIST 0xFFFFFFFF // Atua como sentinela (substituto do NULL)
 
+// Nó da lista: usa offset (índice) em vez de ponteiro absoluto
 typedef struct {
     unsigned int value;
     unsigned int next;
 } Node;
 
+// Memória global
 Node pool[MAX_NODES];
-volatile unsigned char bitmap[MAX_NODES];
+volatile unsigned char bitmap[MAX_NODES]; // 0 = livre, 1 = ocupado
 
+// Contadores atômicos para sincronização 
 volatile int items_for_t1 = 0;
 volatile int items_for_t2 = 0;
 volatile int items_for_t3 = 0;
 
+// Flags indicadoras de término (encerram os loops)
 volatile int t0_done = 0;
 volatile int t1_done = 0;
 volatile int t2_done = 0;
 
 unsigned int dummy_head;
 
+// Busca circular no bitmap para evitar colisões
 unsigned int allocate_node() {
     static unsigned int last_alloc = 0;
     for (unsigned int i = 0; i < MAX_NODES; i++) {
@@ -46,31 +58,35 @@ int is_prime(unsigned int n) {
     return 1;
 }
 
+// Filtro 1: Remove pares > 2
 void* t1_evens(void* arg) {
     unsigned int prev = dummy_head;
-    unsigned int pending_t1 = END_OF_LIST; 
+    unsigned int pending_t1 = END_OF_LIST; // Delay release 
 
     while (1) {
-        while (items_for_t1 == 0 && !t0_done) { }
+        while (items_for_t1 == 0 && !t0_done) { } // Espera ativa
         if (items_for_t1 == 0 && t0_done) break;
 
-        __sync_fetch_and_sub(&items_for_t1, 1);
+        __sync_fetch_and_sub(&items_for_t1, 1); // Consumo atômico do item
 
         unsigned int curr;
         while ((curr = pool[prev].next) == END_OF_LIST) { }
 
         unsigned int val = pool[curr].value;
         if (val > 2 && val % 2 == 0) {
-            pool[prev].next = pool[curr].next;
-            bitmap[curr] = 0;
+            pool[prev].next = pool[curr].next; // Remoção lógica
+            bitmap[curr] = 0;                  // Desalocação
         } else {
             prev = curr;
+            // Libera o nó para T2 apenas após já ter saltado em segurança
             if (pending_t1 != END_OF_LIST) {
                 __sync_fetch_and_add(&items_for_t2, 1);
             }
             pending_t1 = curr;
         }
     }
+    
+    // Descarga do último nó
     if (pending_t1 != END_OF_LIST) {
         __sync_fetch_and_add(&items_for_t2, 1);
     }
@@ -78,6 +94,7 @@ void* t1_evens(void* arg) {
     return NULL;
 }
 
+// Filtro 2: Remove não primos
 void* t2_primes(void* arg) {
     unsigned int prev = dummy_head;
     unsigned int pending_t2 = END_OF_LIST;
@@ -103,6 +120,7 @@ void* t2_primes(void* arg) {
             pending_t2 = curr;
         }
     }
+    
     if (pending_t2 != END_OF_LIST) {
         __sync_fetch_and_add(&items_for_t3, 1);
     }
@@ -110,10 +128,9 @@ void* t2_primes(void* arg) {
     return NULL;
 }
 
+// Consumidor 3: Escreve no arquivo (I/O)
 void* t3_print(void* arg) {
     unsigned int prev = dummy_head;
-    
-    // Abre o ficheiro out.txt para escrita
     FILE *out_f = fopen("out.txt", "w");
     if (!out_f) return NULL;
 
@@ -126,32 +143,31 @@ void* t3_print(void* arg) {
         unsigned int curr;
         while ((curr = pool[prev].next) == END_OF_LIST) { }
 
-        // Escreve diretamente no ficheiro out.txt
         fprintf(out_f, "%u ", pool[curr].value);
-        fflush(out_f); // Garante a descarga imediata para o disco
+        fflush(out_f); // Força gravação em disco
 
         prev = curr;
     }
     
-    fclose(out_f); // Fecha o ficheiro com segurança antes de terminar
+    fclose(out_f);
     return NULL;
 }
 
+// Thread 0: Produtor (Lê arquivo e alimenta a lista)
 int main() {
-    for (unsigned int i = 0; i < MAX_NODES; i++) {
-        bitmap[i] = 0;
-    }
+    for (unsigned int i = 0; i < MAX_NODES; i++) bitmap[i] = 0;
 
     dummy_head = allocate_node();
     pool[dummy_head].value = 0;
     pool[dummy_head].next = END_OF_LIST;
 
+    // Inicialização do pipeline
     pthread_t t1, t2, t3;
     pthread_create(&t1, NULL, t1_evens, NULL);
     pthread_create(&t2, NULL, t2_primes, NULL);
     pthread_create(&t3, NULL, t3_print, NULL);
 
-    FILE *f = fopen("in.txt", "r"); //lê arquivo "in.txt" do diretório atual
+    FILE *f = fopen("in.txt", "r");
     if (!f) return 1;
 
     unsigned int tail = dummy_head;
@@ -176,8 +192,9 @@ int main() {
     if (pending_t0 != END_OF_LIST) {
         __sync_fetch_and_add(&items_for_t1, 1);
     }
-    t0_done = 1;
+    t0_done = 1; // Avisa T1 que não há mais inserções
 
+    // Sincronização final 
     pthread_join(t1, NULL);
     pthread_join(t2, NULL);
     pthread_join(t3, NULL);
