@@ -7,7 +7,7 @@
       "command": "bash",
       "args": [
         "-c",
-        "sync && sleep 1 && cd '${fileDirname}' && g++ -Wall -Wextra -g3 '${fileBasename}' -o output/'${fileBasenameNoExtension}' -lGL -lGLU -lglut 2>&1 && echo '✓ SUCESSO - Arquivo compilado em output/${fileBasenameNoExtension}'"
+        "sync && sleep 1 && cd '${fileDirname}' && mkdir -p output && g++ -Wall -Wextra -g3 '${fileBasename}' -o output/'${fileBasenameNoExtension}' -lGL -lGLU -lglut 2>&1 && echo '✓ SUCESSO - Arquivo compilado em output/${fileBasenameNoExtension}'"
       ],
       "group": {
         "kind": "build",
@@ -17,6 +17,20 @@
       "presentation": {
         "reveal": "always",
         "showReuseMessage": false
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Executar OpenGL Direto (F6)",
+      "command": "cd '${fileDirname}' && mkdir -p output && g++ -Wall -Wextra -g3 '${fileBasename}' -o output/'${fileBasenameNoExtension}' -lGL -lGLU -lglut && echo '✓ Compilado! Abrindo...' && ./output/'${fileBasenameNoExtension}'",
+      "group": "test",
+      "problemMatcher": ["$gcc"],
+      "presentation": {
+        "reveal": "always",
+        "showReuseMessage": false,
+        "focus": true,
+        "panel": "shared",
+        "clear": true
       }
     }
   ]
