@@ -1,0 +1,21 @@
+.data #seguimento dados
+
+		.asciiz "OlaMundo" #esse aqui esta no endereço inicial do .data 0x1001000
+		.align 2 #alinhamento para word // 0x1001009 //adiciona 3 end
+		.word 1,2,3,4 #palavras sao 4 (nesse caso, 16) 0x100100c
+	
+.text #seguimento texto
+
+lui $a0, 0x1001
+addi $v0, $zero, 4
+syscall
+
+
+lui $s0, 0x1001 #ele escreve na parte alta e zera a parte baixa
+ori $s0, $s0, 0x000c
+lw $a0, 0($s0)
+addi $v0, $zero, 1
+syscall
+# para guardar o endereço do .data tem que usar o lui pra parte maior e ori pra parte menor (1001/0000) 2 passos
+
+#refazer os exercícios sem usar alocação dinâmica// imopresao binarios. vetor; conversao doble

@@ -1,0 +1,33 @@
+#uso de syscalls
+	#leitura de um inteiro
+	addi $v0, $zero, 5 #syscall code read integer
+	syscall #espera entrada teclado e coloca em $v0
+	#escrita de um inteiro
+	add $a0, $zero, $v0 #guarda o valor de $v0 no $a0 (que é onde o sistema usa pra imprimir)
+	addi $v0, $zero, 1 #syscall code print integer
+	syscall	#imprime valor de $a0
+	
+	#leitura de float
+	addi $v0, $zero, 6 #syscall code float number
+	syscall
+	
+	#mover valor por processadores
+	addi $a0, $zero, 5
+	mtc1 $a0, $f2
+	cvt.s.w $f2, $f2
+	add.s $f4, $f0, $f2
+	
+	
+	#double
+	addi $v0, $zero, 7 #syscall code float number
+	syscall
+	
+	#mover valor por processadores
+	addi $a0, $zero, 5 
+	mtc1 $a0, $f2 #leva pra coproc
+	cvt.d.w $f2, $f2 #conversao no coproc 1
+	add.d $f4, $f0, $f2 #soma de dobles
+	
+	
+	
+	

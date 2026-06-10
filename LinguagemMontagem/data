@@ -1,0 +1,17 @@
+.data #seguimento dados
+
+	.asciiz "Ola Mundo" #esse aqui esta no endereço inicial do .data 0x10010000// o O está no 1001000 e o \0 esta no 1001000A
+	.asciiz "Ola Mundo2" #inicio do .data +10 (Ola Mundo\0) - 100100a
+	
+.text #seguimento texto
+
+lui $a0, 0x1001
+addi $v0, $zero, 4
+syscall
+
+lui $a0, 0x1001 #ele escreve na parte alta e zera a parte baixa
+ori $a0, $a0, 0x000a
+
+addi $v0, $zero, 4
+syscall
+# para guardar o endereço do .data tem que usar o lui pra parte maior e ori pra parte menor (1001/0000) 2 passos

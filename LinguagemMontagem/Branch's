@@ -1,0 +1,44 @@
+label1: #nomear endereço
+
+#código
+#int_32 a; a -> $s0 
+#leia a
+addi $v0, $zero, 5 #numero do serviço sempre no $v0
+syscall
+add $s0, $zero, $v0 #guarda a entrada em $s0
+
+#if (a > 0)
+blez $s0, FIM_IF1
+	#escreva >0 // '>' = 62 '0' =  48
+		addi $v0, $zero, 11
+		addi $a0, $zero, 62
+		syscall
+		addi $a0, $zero, 48
+		syscall
+FIM_IF1:		
+
+#if (a < 9)
+slti $t0, $s0, 9
+beq $t0, $zero, FIM_IF2
+	#escreva <9 // '<' = 60 '9' =  57
+		addi $v0, $zero, 11
+		addi $a0, $zero, 60
+		syscall
+		addi $a0, $zero, 57
+		syscall
+FIM_IF2:		
+addi $a0, $zero, 10
+syscall
+
+#if  (a > 9) => !(a < 10) 
+slti $t0, $s0, 10
+bne $t0, $zero, FIM_IF3
+	#escreva >9 // '>' = 62 '9' =  57
+		addi $v0, $zero, 11
+		addi $a0, $zero, 62
+		syscall
+		addi $a0, $zero, 57
+		syscall
+FIM_IF3:		
+addi $a0, $zero, 10
+syscall
