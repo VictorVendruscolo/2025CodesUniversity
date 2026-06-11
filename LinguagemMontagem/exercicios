@@ -1,26 +1,28 @@
-#exercicio
+# Mapeamento de variáveis: i -> $s0, soma -> $s1 
 
-#int i, soma // i-> $s0, soma_>$s1
-#for(i=0, soma=0, i<5, i++)
+    # 1. Inicialização
+    addi $s0, $zero, 0      # i = 0 
+    addi $s1, $zero, 0      # soma = 0 
 
-addi $s0, $zero, 0
-addi $s1, $zero, 0
-FOR: 
-	slti $t0, $s0, 5 #se vdd = $t0->1
-	beq $t0, $zero, FIM
-	
-#leia um inteiro e some com soma ($s1)
-	addi $v0, $zero, 5
-	syscall
-	add $s1, $s1, $v0
-	
-	addi $s0,$s0, 1
-	j FOR
-FIM: 
-#imprime a soma	
-addi $v0, $zero, 1
-add $a0, $zero, $s1
-syscall
+FOR:
+    # 2. Condição (i < 5)
+    slti $t0, $s0, 5        # Se i < 5, grava 1 em $t0 
+    beq  $t0, $zero, FIM    # Se $t0 for 0 (ou seja, i >= 5), sai do loop 
+
+    # 3. Corpo do Laço (Lê um inteiro e soma)
+    addi $v0, $zero, 5      # Carrega o syscall 5 (leitura de inteiro) 
+    syscall                 # Executa a leitura 
+    add  $s1, $s1, $v0      # soma = soma + valor_lido 
+
+    # 4. Incremento e Retorno (O que faltava no material)
+    addi $s0, $s0, 1        # i++ (incrementa o contador)
+    j    FOR                # Salta incondicionalmente de volta para avaliar a condição
+
+FIM:
+    # Imprime a soma
+    addi $v0, $zero, 1      # Carrega o syscall 1 (impressão de inteiro) 
+    add  $a0, $zero, $s1    # Coloca a soma final no argumento $a0 
+    syscall                 # Executa a impressão
 
 
 
