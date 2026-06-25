@@ -114,7 +114,7 @@ void drawScene(void)
 
    // Transformations of the spring to the right ear.
    glTranslatef(2.0, 0.0, 0.0);
-   glScalef(1 + sin( (PI/180.0) * angle ), 1.0, 1.0);
+   glScalef(1 + sin( (PI/180.0) * angle), 1.0, 1.0);   //! variável angle permite o movimento do "vai e volta"
    
    // Spring to right ear.
    glColor3f(0.0, 1.0, 0.0);
