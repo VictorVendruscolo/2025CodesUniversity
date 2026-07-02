@@ -213,7 +213,8 @@ void animate(int value)
    if (isAnimate) 
    {
       t += 0.01 ;
-	  if (t >= 1.0) isAnimate = 0;
+	  if (t >= 1.0) isAnimate = 0, t = 1.0;
+     
    }
    glutTimerFunc(animationPeriod, animate, 1);
    glutPostRedisplay();
